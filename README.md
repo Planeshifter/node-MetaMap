@@ -48,6 +48,42 @@ And using promises:
 metaMap.getConcepts(docs).then(console.log)
 ```
 
+#### Options 
+
+Most of the options which can be specified are equal one-to-one to the options which can be specified in the (http://ii.nlm.nih.gov/Interactive/UTS_Required/metamap.shtml)[interactive MetaMap tool], with the Output/Display options missing as all output is returned in JSON format in the node-MetaMap package.
+
+The following Boolean options of the MetaMap API are supported:
+
+- Composite Phrases (Q)
+- No Text Tagging (t)
+- No Derivational Variants (d)
+- All Derivational Variants (D)
+- Allow Acronym/Abbreviation Variants (a)
+- Unique Acronym/Abbreviation Variants Only (u)
+- Ignore Stop Phrases (K) 
+- Allow Large N (l)
+- Threshold (r):
+- Ignore Word Order (i)
+- Prefer Multiple Concepts (Y)
+- Compute/Display All Mappings (b)
+- Use Word Sense Disambiguation (y)
+
+Each of these can be activated by adding a key-value pair to the options object which has the value `true`, e.g.
+```
+options = {
+  Q: true,
+  t: true,
+  r: true
+}
+```
+
+Source vocabularies can be excluded using the `R` and `e` keys, which specify a set of vocabularies to which the search should be restricted or which should be excluded from the data processing, respectively. They both expect a string array of vocabularies, e.g.
+```
+options = {r: ["AIR","AOD"]}
+```
+
+Similarly, restriction or exclusion of Semantic Type(s) is possible via the options `J` and  `k`, which again should both be arrays of the chosen types. 
+
 ### config
 This exposed object holds the user data necessary to connect to the MetaMap Web API. By default, it will load the contents of the `config.json` file in the project directory. Values can also be assigned at run-time by simple assignment:
 
