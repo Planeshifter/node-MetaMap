@@ -11,9 +11,9 @@ This little package provides an easy access point to the [MetaMap Web API] (http
 The following pre-requisites have to be fulfilled before it is possible to use the package: 
 - The package requires a running installation of JAVA version 1.6.0 
 - The `$JAVA_HOME` environment variable has to be specified correctly 
-- The `config.json` file has to include the username, email address and password of the UMLS account used to perform the MetaMap Web API queries 
+- The `config.json` file should include the username, email address and password of the UMLS account used to perform the MetaMap Web API queries. If not specified, it is possible to assign the correct values at run-time.
 
-The package itslf can be conveniently installed via npm:
+The package itself can be conveniently installed via npm:
 
 ```
 npm install MetaMap
@@ -24,12 +24,36 @@ npm install MetaMap
 Require the package as usual via
 
 ```
-var metaMap = require("metaMap");   
+var metaMap = require("MetaMap");   
 ```
 
 The package exposes one function with the following arguments:
 
-### metaMap(docs, [options], [callback])
+### getConcepts(docs, [options], [callback])
+
+`docs` should be either a single String or an Array of Strings, holding the documents to be analyzed. The second optional argument expects an object specifying the options used in the data processing. Finally, a callback function should be passed to the function which by node.js convention receives two arguments, `err` and `data` and is called once the API call has returned. As an alternative to callback, Promises are supported using the `Bluebird` package.
+
+#### Example:
+Using callbacks: 
+
+```
+metaMap.getConcepts(docs, null, function(err, data){
+  console.log(data);
+})
+```
+
+And using promises:
+
+```
+metaMap.getConcepts(docs).then(console.log)
+```
+
+### config
+This exposed object holds the user data necessary to connect to the MetaMap Web API. By default, it will load the contents of the `config.json` file in the project directory. Values can also be assigned at run-time by simple assignment:
+
+```
+metaMap.config = { username: "my username", password: "my password", email: "my email" }
+```
 
 ## Command-Line-Interface (CLI)
 
