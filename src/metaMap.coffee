@@ -15,7 +15,7 @@ escape = (str) ->
 
 package_folder = path.join( __dirname, '..')
 
-exports.config = config = JSON.parse(fs.readFileSync __dirname + '/../config.json')
+exports.config = config = JSON.parse( fs.readFileSync( path.normalize __dirname + '/../config.json' ) )
 
 exports.getConcepts = getConcepts = (docs, options, callback) ->
 
@@ -29,7 +29,7 @@ exports.getConcepts = getConcepts = (docs, options, callback) ->
       if _.contains(['R','e','J','k'], key) and typeIsArray(value) == true
         args.push("-" + key + " " + value.join(','))
 
-    command = 'sh ' + __dirname + '/../SKR_Web_API_V2_1/run.sh MMCustom ' + args.join(' ')
+    command = 'sh ' + path.normalize ( __dirname + '/../SKR_Web_API_V2_1/run.sh') + ' MMCustom ' + args.join(' ')
 
     analyze = (doc) =>
       pWrite = fs.writeFileAsync('temp.txt', doc)
