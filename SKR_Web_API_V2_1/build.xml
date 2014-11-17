@@ -1,0 +1,91 @@
+
+<project name="studio" default="main" basedir=".">
+
+  <!-- ============= Initialization properties ================= -->
+
+  <!-- Give user a chance to override without editing this file
+       (and without typing -D at each compile session) -->
+  <property file=".ant.properties" />
+  <property file="${user.home}/.ant.properties" />
+
+  <!--
+       ===================================================================
+         Set the properties related to the source tree
+       =================================================================== 
+   -->
+
+  <property name="project"           value="."/>
+  <property name="project.src"       value="${project}/sources"/>
+  <property name="project.examples"  value="${project}/examples"/>
+  <property name="project.classes"   value="${project}/classes"/>
+  <property name="project.doc"       value="${project}/doc"/>
+  <property name="project.lib"       value="${project}/lib"/>
+  <property name="common-logging"    value="${project.lib}/commons-logging-1.1.1.jar"/>
+  <property name="httpclient"        value="${project.lib}/httpclient-4.1.1.jar"/>
+  <property name="httpclient.cache"  value="${project.lib}/httpclient-cache-4.1.1.jar"/>
+  <property name="httpcore"          value="${project.lib}/httpcore-4.1.jar"/>
+  <property name="httpcore.nio"      value="${project.lib}/httpcore-nio-4.1.jar"/>
+  <property name="httpmime"          value="${project.lib}/httpmime-4.1.1.jar"/>
+
+  <!-- ======================== compile ========================= -->
+  <target name="compile">  
+    <javac 
+	   destdir="${project.classes}"
+	   debug="true"
+	   deprecation="true" >
+      <src path="${project.src}"/>
+      <src path="${project.examples}"/>
+      <classpath>
+        <pathelement location="${common-logging}"/>
+        <pathelement location="${httpclient}"/>
+        <pathelement location="${httpcore}"/>
+        <pathelement location="${httpmime}"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <!-- ======================== javadoc ========================= -->
+  <target name="javadoc">
+  <!-- Add studio internal javadoc -->
+    <mkdir dir="${project.doc}/javadoc" />
+    <javadoc packagenames="gov.*, examples.*, org.json.*"
+             sourcepath="${project.src}"
+             destdir="${project.doc}/javadoc"
+             author="true"
+             version="true"
+             use="true"
+	     private="true"
+             windowtitle="SKR REST API"
+             doctitle="NLS Internal"
+	     bottom="NLS Projects" >
+      <classpath>
+        <pathelement location="${common-logging}"/>
+        <pathelement location="${httpclient}"/>
+        <pathelement location="${httpcore}"/>
+        <pathelement location="${httpmime}"/>
+      </classpath>
+    </javadoc>
+  </target>
+
+  <!-- ==================== jar ======================= -->
+
+  <target name="jar" depends="compile">
+    <mkdir dir="${project.lib}" />
+    <jar jarfile="${project.lib}/skrAPI.jar"
+         basedir="${project.classes}"/>
+  </target>
+
+  <!-- ==================== Administrative targets ======================= -->
+
+
+  <target name="clean">
+    <delete>
+     <fileset dir="." includes="**/*.class"/>
+    </delete>
+  </target>
+
+  <target name="all" depends="clean,compile,javadoc,jar"/>
+
+  <target name="main" depends="compile"/>
+
+</project>

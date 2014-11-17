@@ -1,0 +1,77 @@
+import java.io.*;
+import gov.nih.nlm.nls.skr.*;
+
+public class MMCustom
+{
+   public static void main(String args[])
+   {
+	String emailAddress = null;
+	String username = null;
+	String password = null;
+	String text = null;
+
+	int i = 0;
+	    while (i < args.length) {
+	      if (args[i].charAt(0) == '-') {
+          if ( args[i].equals("--email-address") || args[i].equals("--email")) {
+      		  i++;
+      		  emailAddress = args[i];
+      		} else if ( args[i].equals("--username") || args[i].equals("--user")) {
+      		  i++;
+      		  username = args[i];
+      		} else if ( args[i].equals("--pwd") || args[i].equals("--password")) {
+      		  i++;
+      		  password = args[i];
+      		} else if ( args[i].equals("--text")) {
+      		  i++;
+      		  text = args[i];
+		}
+	      i++;
+	    }
+    }
+
+        GenericObject myIntMMObj = new GenericObject(100, username, password);
+
+        // REQUIRED FIELDS:
+        //    -- Email_Address
+        //    -- APIText
+        //    -- KSOURCE
+        //         valid KSOURCE: 99, 06, 09, 0910, 10, 1011
+        //         respectively, UMLS 1999, 2006AA, 2009AA, 2009AB,
+        //                       2010AA, and 2010AB
+        //
+        // NOTE: The maximum length is 10,000 characters for APIText.  The
+        //       submission script will reject your request if it is larger.
+
+
+        myIntMMObj.setField("Email_Address", emailAddress);
+	      myIntMMObj.setField("SilentEmail", true);
+
+        StringBuffer buffer = new StringBuffer("A spinal tap was performed and oligoclonal bands were detected in the cerebrospinal fluid.\n");
+        String bufferStr = buffer.toString();
+        myIntMMObj.setField("APIText", bufferStr);
+
+	myIntMMObj.setField("KSOURCE", "2014AA");
+
+        myIntMMObj.setField("COMMAND_ARGS", "");
+
+        // Submit the job request
+
+        try
+        {
+           String results = myIntMMObj.handleSubmission();
+           System.out.print(results);
+
+        } catch (RuntimeException ex) {
+           System.err.println("");
+           System.err.print("An ERROR has occurred while processing your");
+           System.err.println(" request, please review any");
+           System.err.print("lines beginning with \"Error:\" above and the");
+           System.err.println(" trace below for indications of");
+           System.err.println("what may have gone wrong.");
+           System.err.println("");
+           System.err.println("Trace:");
+           ex.printStackTrace();
+        } // catch
+   } // main
+} // class MMInteractive

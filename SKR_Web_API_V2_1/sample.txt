@@ -1,0 +1,114 @@
+UI  - 97479605
+TI  - Higher neonatal cerebral blood flow correlates with worse childhood
+      neurologic outcome.
+AB  - Cerebral blood flow (CBF) in newborn infants is often below levels
+      necessary to sustain brain viability in adults. Controversy exists
+      regarding the effects of such low CBF on subsequent neurologic
+      function. We determined the current childhood neurologic status and
+      IQ in 26 subjects who had measurements of CBF performed with PET in
+      the neonatal period between 1983 and 1989 as part of a study of
+      hypoxic-ischemic encephalopathy. Follow-up information at ages 4 to
+      12 years was obtained on all 26 subjects. Ten subjects had died. All
+      16 survivors underwent clinical neurologic evaluation, and 14 also
+      underwent intelligence testing. Eight had abnormal clinical
+      neurologic evaluations; eight were normal. The mean neonatal CBF in
+      those with abnormal childhood neurologic outcome was significantly
+      higher than in those with normal childhood neurologic outcome (35.64
+      +/- 11.80 versus 18.26 +/- 8.62 mL 100 g(-1) min(-1), t = 3.36, p =
+      0.005). A significant negative correlation between neonatal CBF and
+      childhood IQ was demonstrated (Spearman rank correlation r = -0.675,
+      p = 0.008). Higher CBF was associated with lower IQ. The higher CBF
+      in subjects with worse neurologic and intellectual outcome may
+      reflect greater loss of cerebrovascular autoregulation or other
+      vascular regulatory mechanisms due to more severe brain damage.
+
+UI  - 98018928
+TI  - Bupivacaine inhibition of L-type calcium current in ventricular
+      cardiomyocytes of hamster.
+AB  - BACKGROUND: The local anesthetic bupivacaine is cardiotoxic when
+      accidentally injected into the circulation. Such cardiotoxicity might
+      involve an inhibition of cardiac L-type Ca2+ current (ICa,L). This
+      study was designed to define the mechanism of bupivacaine inhibition
+      of ICa,L. METHODS: Cardiomyocytes were enzymatically dispersed from
+      hamster ventricles. Certain voltage- and time-dependencies of ICa,L
+      were recorded using the whole-cell patch clamp method in the presence
+      and absence of different concentrations of bupivacaine. RESULTS:
+      Bupivacaine, in a concentration-dependent manner (10-300 microM),
+      tonically inhibited the peak amplitude of ICa,L. The inhibition was
+      characterized by an increase in the time of recovery from
+      inactivation and a negative-voltage shift of the steady-state
+      inactivation curve. The inhibition was shown to be voltage-dependent,
+      and the peak amplitude of ICa,L could not be restored to control
+      levels by a wash from bupivacaine. CONCLUSIONS: The inhibition of
+      ICa,L appears, in part, to result from bupivacaine predisposing
+      L-type Ca channels to the inactivated state. Data from washout
+      suggest that there may be two mechanisms of inhibition at work.
+      Bupivacaine may bind with low affinity to the Ca channel and also
+      affect an unidentified metabolic component that modulates Ca channel
+      function.
+
+UI  - 97443327
+TI  - Formation of formate and hydrogen, and flux of reducing equivalents
+      and carbon in Ruminococcus flavefaciens FD-1.
+AB  - A pathway for conversion of the metabolic intermediate
+      phosphoenolpyruvate (PEP) and the formation of acetate, succinate,
+      formate, and H2 in the anaerobic cellulolytic bacterium Ruminococcus
+      flavefaciens FD-1 was constructed on the basis of enzyme activities
+      detected in extracts of cells grown in cellulose- or
+      cellobiose-limited continuous culture. PEP was converted to acetate
+      and CO2 (via pyruvate kinase, pyruvate dehydrogenase, and acetate
+      kinase) or carboxylated to form succinate (via PEP carboxykinase,
+      malate dehydrogenase, fumarase, and fumarate reductase). Lactate was
+      not formed even during rapid growth (batch culture, mu = 0.35/h). H2
+      was formed by a hydrogenase rather than by cleavage of formate, and
+      13C-NMR and 14C-exchange reaction data indicated that formate was
+      produced by CO2 reduction, not by a cleavage of pyruvate. The
+      distribution of PEP into the acetate and succinate pathways was not
+      affected by changing extracellular pH and growth rates within the
+      normal growth range. However, increasing growth rate from 0.017/h to
+      0.244/h resulted in a shift toward formate production, presumably at
+      the expense of H2. This shift suggested that reducing equivalents
+      could be balanced through formate or H2 production without affecting
+      the yields of the major carbon-containing fermentation endproducts.
+
+UI  - 97408530
+TI  - Approximate confidence intervals for heritability from method R
+      estimates.
+AB  - Method R estimates of heritability (h2) and associated confidence
+      intervals (CI) were obtained from simulated data using a single
+      trait, direct effects, full animal model, with 50% subsampling. Five
+      hundred data sets were simulated for each of five levels of h2 (.10,
+      .20, .30, .40, and .50) and two types of pedigree structure (random
+      pedigree structure [N = 2,000] that varied over simulations, or the
+      pedigree structure from a real data set [N = 2,644] that was constant
+      for all simulations). The first 10, 20, and all 50 h2 estimates were
+      used to obtain 80, 90, 95, and 99% CI for each data set. The variance
+      of h2 estimates within data sets approximated the sampling variance
+      of the h2 estimates. The Box-Cox transformation was used to normalize
+      the distribution of estimates from each data set. Confidence
+      intervals were computed on the transformed scale as CI = mu +/- (T x
+      sigma), where mu and sigma = the mean and SD of the N transformed h2
+      estimates, respectively, and T = the critical value from the T
+      distribution for a 1-alpha CI, with df = N-1. Upper and lower CI
+      bounds were converted back to the original scale by reversing the
+      transformation. The percentages of CI containing the true h2 value,
+      pooled across all levels of h2, types of pedigree, and number of
+      estimates used to obtain CI, for 80, 90, 95, and 99% CI were 81.14,
+      90.96, 95.27, and 98.76%, respectively. These results suggested that
+      Method R h2 estimates can be used to obtain reliable CI.
+
+UI  - 97453431
+TI  - rhDNase as an example of recurrent event analysis.
+AB  - We consider counting process methods for analysing time-to-event data
+      with multiple or recurrent outcomes, using the models developed by
+      Anderson and Gill, Wei, Lin and Weissfeld and Prentice, Williams and
+      Peterson. We compare the methods, and show how to implement them
+      using popular statistical software programs. By analysing three data
+      sets, we illustrate the strengths and pitfalls of each method. The
+      first example is simulated and involves the effect of a hidden
+      covariate. The second is based on a trial of gamma interferon, and
+      behaves remarkably like the first. The third and most interesting
+      example involves both multiple events and discontinuous intervals at
+      risk, and the three approaches give dissimilar answers. We recommend
+      the AG and marginal models for the analysis of this type of data.
+

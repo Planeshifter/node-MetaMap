@@ -1,0 +1,820 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Semantic Knowledge Representation Web API Overview</title>
+<SCRIPT LANGUAGE="JavaScript">
+
+<!--- hide script from old browsers
+
+function displayMsg(text) {
+  msgWindow=window.open("", "message", 
+    "screenX=300,screenY=300,outerWidth=500,outerHeight=500,scrollbars=yes,resizable=yes")
+  msgWindow.document.close();
+  msgWindow.document.open();
+  msgWindow.document.write();
+  msgWindow.document.write ("<head><title>Message Window</title></head>")
+  msgWindow.document.write ("<body bgcolor=white>")
+  msgWindow.document.write ("<form method=post>")
+  msgWindow.document.write ("<big>" + text + "<br><br>")
+  msgWindow.document.write ("<center>")
+  msgWindow.document.write ("<input type=button value=OK onClick=\"window.close();\">")
+  msgWindow.document.write ("</center></form></body>")
+}
+
+function toggleDisplay(options, which) {
+   if(options[0].selected) {
+      var block = document.getElementById(which);
+      block.style.display = "none";
+   }
+
+   else {
+      var block = document.getElementById(which);
+      block.style.display = "block";
+   }
+}
+// end hiding from old browsers -->
+
+</SCRIPT>
+</head>
+
+<body bgcolor=papayawhip>
+<table border="0" width=100%>
+   <tr>
+     <td align=center>
+       <img border=0 src="./doc/SKR_Web_API.jpg"
+           alt="SKR Web API Logo" title="SKR Web API Logo">
+     </td>
+   </tr>
+</table>
+
+<hr noshade>
+
+<font size=+1><b><u>Contents:</u></b></font><br>
+
+<table border=0>
+  <tr>
+     <td valign=top>
+       <font color=blue>
+         <ul>
+          <li><font color=black point-size=12>
+              <a href="#Prequisites">Prerequisites and Notices</a></font><br>
+
+          <li><font color=black point-size=12>
+              <a href="#Installation">Installation</a></font><br>
+        </ul>
+       </font>
+     </td>
+
+     <td valign=top>
+       <font color=blue>
+         <ul>
+          <li><font color=black point-size=12>
+              <a href="#Overview">Overview of What Happens</a></font><br>
+
+          <li><font color=black point-size=12>
+               <a href="#Examples">Example Programs</a></font><br>
+
+          <li><font color=black point-size=12>
+               <a href="#Samples">Sample Batch Commands</a></font><br>
+        </ul>
+       </font>
+     </td>
+
+     <td valign=top>
+       <font color=blue>
+         <ul>
+          <li><font color=black point-size=12>
+               <a href="#HowTo">How to Compile and Run</a></font><br>
+
+          <li><font color=black point-size=12>
+               <a href="#Notes">Programming Notes</a></font><br>
+ 
+          <li><font color=black point-size=12>
+               <a href="doc/index.html">Javadoc for SKR Web API</a></font><br>
+       </ul>
+       </font>
+     </td>
+  </tr>
+</table>
+<div align=center>
+Whenever you see 
+<img border=0 align=ABSMIDDLE src="./doc/quest.gif" 
+  width=14 height=14 alt="Information Mark Symbol"
+  title="Information Mark Symbol"> in the text below, it means that additional
+information is available by selecting the symbol.
+</div>
+
+<hr noshade>
+<font size=+1><b><u>
+<a name="Introduction">Introduction:</a></u></b></font><br>
+This Java-based API to the Semantic Knowledge Representation (SKR) Scheduler facility was created to provide users with the ability to programmatically submit jobs to the Scheduler Batch and Interactive facilities instead of using the web-based interface.
+<br><br>
+
+<font size=+1><b><u>
+<a name="Background">Background:</a></u></b></font><br>
+The SKR Project was initiated at NLM in order to develop programs to provide usable semantic representation of biomedical free text by building on resources currently available at the library.
+<br><br>
+
+The SKR project is concerned with reliable and effective management of the information encoded in natural language texts. The project develops programs that provide usable semantic representation of biomedical text by building on resources currently available at the Library, especially the UMLS knowledge sources and the natural language processing tools provided by the SPECIALIST system.
+<br><br>
+
+Two programs in particular, MetaMap and SemRep, are being evaluated and enhanced and applied to a variety of problems in the management of biomedical information. These include automatic indexing of MEDLINE citations, concept-based query expansion, analysis of complex Metathesaurus strings, accurate identification of the terminology and relationships in anatomical documents, and the extraction of chemical binding relations from biomedical text.
+<br><br>
+
+<font size=+1><b><u>
+<a name="TPAL">Third Party and Associated Licenses Used:</a></u></b></font><br>
+  For specifics on the licensing and copyright information on each of these
+  packages, please visit their respective link.  Notices/Attributions will
+  also be found in the source code when and where required.<br>
+
+  <ul>
+    <li>The http*.jar files are from the Apache
+        HttpComponents<sup><font size=-1>&#174;</font></sup> project
+        (<a href="http://hc.apache.org">http://hc.apache.org</a>/)
+        which is under the Apache License, Version 2.0
+       (<a 
+     href="http://www.apache.org/licenses">http://www.apache.org/licenses</a>/).
+       <br><br>
+
+    <li>The Json libraries are from JSON.org (<a
+        href="http://json.org">http://json.org</a>/) which uses the
+        JSON License (<a class="link"
+href="http://www.json.org/license.html">http://www.json.org/license.html</a>)
+       <br><br>
+
+    <li>The Password Masking in the Java Programming Language software is from
+        <a
+    href="http://java.sun.com/developer/technicalArticles/Security/pwordmask/">
+        http://java.sun.com/developer/technicalArticles/Security/pwordmask/</a>.
+        Author: Qusay H. Mahmoud with contributions from Alan Sommerer
+        <br><br>
+
+     <li>Information on the CAS RESTful API Protocol used by this API can be found at:
+<a href="https://wiki.jasig.org/display/CASUM/RESTful+API">https://wiki.jasig.org/display/CASUM/RESTful+API</a> .
+
+  </ul>
+
+<hr noshade>
+
+<font size=+1><b><u>
+<a name="Prerequisites">Prerequisites and Notices:</a></u></b></font>
+
+<table border=1 bgcolor=red>
+  <tr>
+    <td bgcolor=white>
+      <div align=center><b>Please Note</b></div>
+      This software is produced by an agency of the U.S. Government, and
+      by statute is not subject to copyright in the United States.  Recipients
+      of this software assume all responsibilities associated with its
+      operation, modification, and maintenance.
+    </td>
+  </tr>
+</table>
+
+<table border="1" bgcolor=tan>
+  <tr bgcolor=moccasin>
+     <td colspan=2 align=center>
+      Users are responsible for compliance with the UMLS Metathesaurus
+      License Agreement.
+
+      <br><br>
+      To use the SKR Web API, you must have accepted the terms of the
+      <a href="https://uts.nlm.nih.gov/license.html">UMLS Metathesaurus
+      License Agreement</a>, which requires you to respect the copyrights
+      of the constituent vocabularies and to file a brief annual report on
+      your use of the UMLS. You also must have activated
+      a <a href="https://uts.nlm.nih.gov">UMLS Terminology Services (UTS)</a>
+      account.  For information on how we use UTS authentication please select
+      the Info icon to the right:
+      <a href="http://skr.nlm.nih.gov/Help/umlsks.shtml">
+        <img border=0 align=ABSMIDDLE src="./doc/quest.gif" 
+             width=18 height=18
+             alt="Information Mark Symbol: Help about UTS accounts"
+             title="Information Mark Symbol: Help about UTS accounts"></a>
+
+      <br><br>
+      For details of the licenses see the
+      <a href="https://uts.nlm.nih.gov/license.html">UMLS Metathesaurus
+      License Agreement</a> and<br>
+      <a href="http://www.nlm.nih.gov/databases/umls.html">How to License
+      and Access the Unified Medical Language System® (UMLS®) Data</a>.
+     </td>
+  </tr>
+</table>
+<hr noshade>
+
+<ul type=square>
+ <li> A running version of Java.
+      <a href="javascript:displayMsg('If you are only going to use Java<sup>&trade;</sup> for running the SKR Web API program, you will only need the Java Runtime Environment (JRE).  The following link will take you to the Sun Java 2 Platform, Standard Edition download web page.  From that web page, select the latest (non Beta) version of JRE typically entitled something similar to the following: <em>Java 2, Runtime Environment, Standard Edition, v1.4.2 (JRE)</em>.<br><br> If you are going to use Java for augmenting the SKR Web API or for your own Java based programming, it is recommended that you download the Java SDK.<br><br><b>Please Note:</b> In either case, you will be required to review and accept a disclaimer before downloading is allowed for the Java software.<br><br><a href=http://www.java.sun.com/j2se target=Java> Java 2 Platform, Standard Edition Download Page</a>');">
+          <img border=0 align=ABSMIDDLE width=14 height=14
+           src="./doc/quest.gif"
+           alt="Information Mark Symbol: Help about Java"
+           title="Information Mark Symbol: Help about Java"></a>
+      We have tested and confirmed that the SKR Web API
+      program compiles and runs under the following versions of Java:
+      <ul type=disc>
+        <li> 1.6.0
+      </ul>
+     <br>
+
+ <li> We have tested and confirmed that the SKR Web API program runs on the
+      following operating systems:
+      <ul type=disc>
+        <li> Linux
+        <li> Microsoft Windows XP, 7
+        <li> Mac OS/X
+      </ul>
+     <br>
+
+  <li> Apache's Jakarta Project Ant
+           <a href="javascript:displayMsg('<b>To find out which version of
+           Ant you are running, type the following in a command window.<br><br>
+           <pre>     ant -version</pre></b><br><br>The following link will take
+           you to the Apache Jakarta Ant web page.
+           From that web site, select the <i>Latest Release</i> that you would
+           like to install.<br><br>
+           <a href=http://jakarta.apache.org/ant/index.html target=ANT>Ant 
+           Download Page</a>');">
+          <img border=0 align=ABSMIDDLE width=14 height=14
+           src="./doc/quest.gif"
+           alt="Information Mark Symbol: Help about Ant"
+           title="Information Mark Symbol: Help about Ant"></a>
+           program is <u>only</u> required if you wish to modify
+           and/or compile the SKR Web API source code using the
+           existing build file:
+      <ul type=disc>
+        <li> 1.6 or better
+      </ul>
+         <br>
+
+ <li> Your data in a recognized format.  Please see the
+      <a href="http://skr.nlm.nih.gov/Help/help.shtml#File%20Formats">Supported
+      File Formats</a> section of the SKR Help Information web page for
+      detailed information and examples of valid input formats.
+</ul>
+<hr noshade>
+
+<font size=+1><b><u>
+<a name="Installation">Installation:</a></u></b></font><br><br>
+To install the SKR Web API, do the following:<br>
+  <ol start=1 type="1">
+    <li> Make a top level directory to store the SKR Web API program.
+         <br><br>
+
+    <li> Go to the <a href="http://skr.nlm.nih.gov/SKR_API">SKR Web API</a> page
+         from the <a href="http://skr.nlm.nih.gov/">SKR</a> homepage.
+         <br><br>
+
+    <li> Download the latest version of the SKR Web API into the
+         directory created in #1.
+         <br><br>
+
+    <li> Change directory to the directory created in #1
+         <br><br>
+
+    <li> Extract the jar files from the downloaded jar file - SKR_Web_API_V2_0.jar.
+         <ul type="disc">
+           <li><b>On Windows:</b>Run winzip, pkzip, or zip on the
+                downloaded file.
+                <br><br>
+           <li><b>On Unix:</b>Run the java jar program on the
+                jar file: <b>java sun.tools.jar.Main xf SKR_Web_API_V2_0.jar</b>
+         </ul>
+
+         <br>
+    <li>This will create a directory called "SKR_Web_API_V2_0"
+        in the directory you created in #1 and
+         fill it with all of the program files needed.
+         <br><br>
+
+    <li>Now, change to this new directory: <b>cd SKR_Web_API_V2_0</b>
+         <br><br>
+
+    <li>You are now ready to run.  Look at the example programs in the
+        "examples" subdirectory for ideas on what to do.
+  </ol>
+
+<hr noshade>
+
+<font size=+1><b><u>
+<a name="Overview">Overview of What Happens:</a></u></b></font>
+
+ <p>
+  The SKR Web API has been designed to allow you to interact with our web-based 
+Scheduler using our Batch and Interactive facilities.  Interactive access is currently only
+available for the MetaMap and SemRep programs.
+
+<ul type=square>
+ <li><b>Batch Jobs have three main phases:</b>
+   <ol type="1">
+     <li> Request is made for a new batch job and the SKR Web API submits the
+          job.<br><br>
+
+     <li> Program waits for job to finish.  This is done by monitoring the
+          Scheduler queue to see when the job exits the queue.  The program
+          sleeps for 10 seconds after each check of the queue so that it
+          doesn't become a nuisance process.<br><br>
+
+     <li> Once the job has left the Scheduler queue, the program then checks
+          to see if the "text.out.done" file exists in the job result
+          directory.  If it does, then the results file "text.out" is returned
+          as a String to the calling method.  If the "text.out.done" file
+          doesn't exist, an error has occurred and the program exits.
+   </ol><br>
+
+ <li><b>Interactive Jobs only have two main phases:</b>
+   <ol type="1">
+     <li> Request is made for a new interactive job and the SKR Web API submits the
+          job.<br><br>
+
+     <li> Program waits for job to finish and returns the result as a String
+          to the calling method.  Interactive jobs don't really enter the
+          Scheduler - they are run from the command line.  The API simply
+          waits for the command to return a result without having to worry
+          about the Scheduler queue, etc., providing the fastest mechanism for
+          receiving results.<br><br>
+
+     <li> <b>Note:</b> <i>Interactive jobs will only accept a single
+          item up to 10,000 characters in length to process - anything
+          larger will generate an error.</i>
+   </ol>
+</ul>
+
+<hr noshade>
+
+<font size=+1><b><u>
+<a name="Examples">Example Programs:</a></u></b></font>
+
+<p>
+There are six example programs included in the "examples" directory to illustrate how to incorporate the SKR Web API into your application.  Two of the examples (GenericBatch.java and GenericBatchNew.java) show how to access the Scheduler Batch facility.  MMInteractive and SRInteractive.java examples show how to access Interactive MetaMap and Interactive SemRep respectively.  The last two examples GenericBatchUser.java and MMInteractiveUser.java illustrate how to
+specify the username and password within the program to eliminate the need for
+prompting when running.
+
+<br><br>
+For a list of the available options, please select the appropriate program name:
+ <a href="http://metamap.nlm.nih.gov/MM09_Usage.shtml"
+    target=helpSKROpts>MetaMap</a> and  
+  <a href="http://skr.nlm.nih.gov/resource/NewMTIBatch_help_info.html"
+     target=helpMTIOpts>MTI</a>.
+
+<br><br>
+
+<table border=1 bgcolor=tan>
+  <tr bgcolor=white>
+   <td><b>GenericBatch.java</b>
+       Example program for submitting a new Generic Batch with Validation job
+       ("GenericObject(true)" turns on validation) request to the Scheduler to
+       run.  You will be prompted for your username and password and if they
+       are alright, the job is submitted to the Scheduler and the results are
+       returned in the String "results" below.
+       <br><br>
+       This example shows how to setup a basic Generic Batch with Validation job
+       with a small file (sample.txt) with ASCII MEDLINE formatted citations as
+       input data. You must set the Email_Address variable and use the
+       UpLoad_File
+       to specify the data to be processed.  This example also shows the user
+       setting the SilentEmail option which tells the Scheduler to NOT send
+       email upon completing the job.
+       <br><br>
+       This example is set to run the MTI (Medical Text Indexer) program using
+       the -opt1L_DCMS and -E options. You can also setup any environment
+       variables
+       that will be needed by the program by setting the Batch_Env field.
+       <br><br>
+       <b>NOTE:</b>
+          The "-E" option/argument is very important and should be included
+          with whatever program (MetaMap, SemRep, MTI) you decided to run!
+          The reason is that this
+          version of the Generic Batch does validation and the -E option tells
+          the various programs to include a marker denoting when a successful
+          result has been found.
+   </td>
+  </tr>
+
+  <tr bgcolor=steelblue>
+   <td><font point-size=4>&nbsp;</font></td>
+  </tr>
+
+  <tr bgcolor=white>
+   <td><b>GenericBatchNew.java</b>
+       Same as GenericBach.java above, except you can enter any of the
+       options and the inputfile on the command line.  The usage of the
+       program and available options are listed below:
+<div class="block"><pre>
+usage: GenericBatchNew [options] inputFilename
+  allowed options: 
+    --email &lt;address&gt; : set email address. (required option)
+    --command &lt;name&gt; : batch command: metamap, semrep, etc. (default: MTI -opt1_DCMS -E)
+    --note &lt;notes&gt; : batch notes 
+    --silent : don't send email after job completes.
+    --silent-errors : Silent on Errors
+    --singleLineInput : Single Line Delimited Input
+    --singleLinePMID : Single Line Delimited Input w/ID
+    --priority : request a Run Priority Level: 0, 1, or 2
+</pre></div>
+
+       <b>NOTE:</b>
+          The "-E" option/argument is very important and should be included
+          with whatever program you decided to run!  The reason is that this
+          version of the Generic Batch does validation and the -E option tells
+          the various programs to include a marker denoting when a successful
+          result has been found.
+   </td>
+  </tr>
+
+  <tr bgcolor=steelblue>
+   <td><font point-size=4>&nbsp;</font></td>
+  </tr>
+
+  <tr bgcolor=white>
+   <td><b>MMInteractive.java</b>
+   This example shows how to setup a basic Interactive MetaMap request.
+   This runs the latest version of MetaMap with 1011 (2010AB) version
+   of the UMLS Metathesaurus ("KSOURCE", "1011"), with "ignore_word_order" (-i)
+   and "all_derivational_variants" (D) set as arguments to MetaMap.  The
+   default "Human Readable" output will be produced.
+
+       <br><br>
+       <b>NOTE:</b>
+          The "-E" option/argument is <u>NOT</u> required for Interactive use.
+   </td>
+  </tr>
+
+  <tr bgcolor=steelblue>
+   <td><font point-size=4>&nbsp;</font></td>
+  </tr>
+
+  <tr bgcolor=white>
+   <td><b>SRInteractive.java</b>
+   This example shows how to setup a basic Interactive SemRep request.
+   This runs the latest version of SemRep with Full Fielded Output (-D).
+
+       <br><br>
+       <b>NOTE:</b>
+          The "-E" option/argument is <u>NOT</u> required for Interactive use.
+   </td>
+  </tr>
+
+  <tr bgcolor=steelblue>
+   <td><font point-size=4>&nbsp;</font></td>
+  </tr>
+
+  <tr bgcolor=white>
+   <td><b>GenericBatchUser.java</b>
+   This example is the same as "GenericBatchNew.java" above, except that the
+   username and password are set in the program so that the user is not
+   prompted when the program runs.  <b>Please Note:</b> Although we understand
+   the operational need for being able to specify the username and password
+   within a program, you must also be aware of the security risks when using
+   this setup.  Please take care to secure the software you create using this
+   option.
+   </td>
+  </tr>
+
+  <tr bgcolor=steelblue>
+   <td><font point-size=4>&nbsp;</font></td>
+  </tr>
+
+  <tr bgcolor=white>
+   <td><b>MMInteractiveUser.java</b>
+   This example is the same as "MMInteractive.java" above, except that the
+   username and password are set in the program so that the user is not
+   prompted when the program runs.  <b>Please Note:</b> Although we understand
+   the operational need for being able to specify the username and password
+   within a program, you must also be aware of the security risks when using
+   this setup.  Please take care to secure the software you create using this
+   option.
+   </td>
+  </tr>
+</table>
+
+<hr noshade>
+
+<font size=+1><b><u>
+<a name="Samples">Sample Batch Commands:</a></u></b></font>
+
+<ul type=square>
+  <li> Default MetaMap call (latest version of MetaMap, strict data model,
+       current UMLS Knowledge Source, human readable output,
+       and best mappings only):
+       <div style="background-color:white; border:2px solid #ADADAD">
+       metamap -E
+       </div>
+       <br>
+
+  <li> MetaMap formatted XML output call (latest version of MetaMap,
+       strict data model, current UMLS Knowledge Source, Formatted XML output,
+       and best mappings only) showing both short and long form of the
+       XML option:
+       <div style="background-color:white; border:2px solid #ADADAD">
+       metamap -% format -E<br>
+       &nbsp;&nbsp;or<br>
+       metamap --XML format -E
+       </div>
+       <br>
+
+  <li> Specify Semantic Types to Restrict MetaMap too (latest version of
+       MetaMap, strict data model, current UMLS Knowledge Source,
+       human readable output, best mappings only, only allow "Disease or
+       Syndrome", "Finding", and "Injury or Poisoning" Semantic Types):
+       <div style="background-color:white; border:2px solid #ADADAD">
+       metamap -J "dsyn,fndg,inpo" -E<br>
+       </div>
+       <br>
+
+  <li> Default MTI call (latest version of MTI, use PubMed Related Articles
+       first and TexTool as backup for PRC, and default output):
+       <div style="background-color:white; border:2px solid #ADADAD">
+       MTI -opt1L_DCMS -E
+       </div>
+       <br>
+
+  <li> Default SemRep call (latest version of SemRep with Full Fielded Output):
+       <div style="background-color:white; border:2px solid #ADADAD">
+       semrep -D -E
+       </div>
+       <br>
+</ul>
+
+<hr noshade>
+
+<font size=+1><b><u>
+<a name="HowTo">How to Compile and Run:</a></u></b></font>
+
+<ul type=square>
+  <li> To compile the source jar file and/or any of the examples using Ant
+       - change to the top-level directory and run:
+       <div style="background-color:white; border:2px solid #ADADAD">
+       ant jar
+       </div>
+       <br>
+
+  <li> To compile any of the examples <u>without</u> Ant, change to
+       the examples directory first:
+       <br>
+       <div style="background-color:white; border:2px solid #ADADAD">
+       cd examples<br><br>
+       <b>Unix:</b><br>
+javac -cp ../classes:../lib/skrAPI.jar:../lib/commons-logging-1.1.1.jar:../lib/httpclient-cache-4.1.1.jar:../lib/httpcore-nio-4.1.jar:../lib/httpclient-4.1.1.jar:../lib/httpcore-4.1.jar:../lib/httpmime-4.1.1.jar -d ../classes GenericBatch.java<br><br>
+
+or, you can use the "compile.sh" script provided<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../compile.sh GenericBatch.java<br><br>
+
+
+       <b>Windows:</b><br>
+javac -cp ..\classes;..\lib\skrAPI.jar;..\lib\commons-logging-1.1.1.jar;..\lib\httpclient-cache-4.1.1.jar;..\lib\httpcore-nio-4.1.jar;..\lib\httpclient-4.1.1.jar;..\lib\httpcore-4.1.jar;..\lib\httpmime-4.1.1.jar -d ..\classes GenericBatch.java<br><br>
+
+       </div><br>
+
+  <li> To run any of the examples, change to the examples directory first:
+       <br>
+       <div style="background-color:white; border:2px solid #ADADAD">
+       cd examples<br><br>
+       <b>Unix:</b><br>
+java -cp ../classes:../lib/skrAPI.jar:../lib/commons-logging-1.1.1.jar:../lib/httpclient-cache-4.1.1.jar:../lib/httpcore-nio-4.1.jar:../lib/httpclient-4.1.1.jar:../lib/httpcore-4.1.jar:../lib/httpmime-4.1.1.jar GenericBatch<br><br>
+
+java -cp ../classes:../lib/skrAPI.jar:../lib/commons-logging-1.1.1.jar:../lib/httpclient-cache-4.1.1.jar:../lib/httpcore-nio-4.1.jar:../lib/httpclient-4.1.1.jar:../lib/httpcore-4.1.jar:../lib/httpmime-4.1.1.jar GenericBatchNew --email your@email inputFilename<br><br>
+
+or, you can use the "run.sh" script provided<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../run.sh GenericBatch<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;../run.sh GenericBatchNew --email your@email inputFilename<br><br>
+
+
+       <b>Windows:</b><br>
+java -cp ..\classes;..\lib\skrAPI.jar;..\lib\commons-logging-1.1.1.jar;..\lib\httpclient-cache-4.1.1.jar;..\lib\httpcore-nio-4.1.jar;..\lib\httpclient-4.1.1.jar;..\lib\httpcore-4.1.jar;..\lib\httpmime-4.1.1.jar GenericBatch<br><br>
+
+java -cp ..\classes;..\lib\skrAPI.jar;..\lib\commons-logging-1.1.1.jar;..\lib\httpclient-cache-4.1.1.jar;..\lib\httpcore-nio-4.1.jar;..\lib\httpclient-4.1.1.jar;..\lib\httpcore-4.1.jar;..\lib\httpmime-4.1.1.jar GenericBatchNew --email your@email filename<br><br>
+
+       </div>
+</ul>
+
+<hr noshade>
+
+<font size=+1><b><u>
+<a name="Notes">Programming Notes:</a></u></b></font>
+<br><br>
+
+<table border=1 bgcolor=white>
+  <tr bgcolor=steelblue>
+    <th colspan=4><font color=white point-size=12>Required Fields</font></th>
+  </tr>
+
+  <tr>
+    <th><font point-size=10>General Description</font></th>
+    <th><font point-size=10>Name</font></th>
+    <th><font point-size=10>Type</font></th>
+  </tr>
+
+  <tr>
+    <td><font point-size=10>Email Address</font></td>
+    <td><font point-size=10>Email_Address</font></td>
+    <td><font point-size=10>String</font></td>
+  </tr>
+
+  <tr>
+    <td><font point-size=10>File to Upload</font></td>
+    <td><font point-size=10>UpLoad_File</font></td>
+    <td><font point-size=10>String</font></td>
+  </tr>
+</table>
+
+<br><br>
+
+<table border=1 bgcolor=white>
+  <tr bgcolor=steelblue>
+    <th colspan=4><font color=white point-size=12>Optional Fields</font>
+    </th>
+  </tr>
+
+
+  <tr>
+    <th><font point-size=10>General Description</font></th>
+    <th><font point-size=10>Name</font></th>
+    <th><font point-size=10>Type</font></th>
+  </tr>
+
+  <tr>
+    <td><font point-size=10>Silent on Errors</font>
+      <a href="javascript:displayMsg('<b><u><center>Silent on Errors
+        Option</center></u></b><br>
+        Normal Scheduler operation inserts an ERROR marker in the result
+        when an error occurs during the processing of
+        a job.  The line looks similar to the following:<br><br>
+        [23412]: *** ERROR *** ERROR *** ERROR ***<br><br>
+        The error line denotes the item number that caused the error
+        and is a placeholder for the results.<br><br>
+        By selecting the <i>Silent on Errors</i> option, you force 
+        the Scheduler to <b><u>NOT</u></b> print this placeholder in 
+        the results.');">
+       <img border=0 align=ABSMIDDLE src="./doc/quest.gif" 
+       width=14 height=14
+       alt="Question Mark Symbol: Help about Silent on Errors"
+       title="Question Mark Symbol: Help about Silent on Errors"></a>
+       </td>
+       <td><font point-size=10>ESilent</font></td>
+       <td><font point-size=10>Boolean</font></td>
+      </tr>
+
+  <tr>
+    <td><font point-size=10>Single Line Delimited Input</font>
+       &nbsp;
+       <a href="javascript:displayMsg('<b><u><center>Single Line Delimited
+        Input</center></u></b><br>
+        Normal Scheduler operation assumes that each input element
+        (free text or MEDLINE citation) is separated from the next
+        element by a blank line.<br><br>
+        By selecting the <i>Single Line Delimited Input</i> option, 
+        you are telling the Scheduler to treat each line of the input
+        file as a separate input item and to ignore blank lines in
+        the file.<br><br>For Example,<br><br>Line one to process<br>Line two to
+        process');">
+        <img border=0 align=ABSMIDDLE src="./doc/quest.gif" 
+        width=14 height=14
+       alt="Question Mark Symbol: Help about Single Line Delimited Input"
+       title="Question Mark Symbol: Help about Single Line Delimited Input"></a>
+       </td>
+       <td><font point-size=10>SingLine</font></td>
+       <td><font point-size=10>Boolean</font></td>
+      </tr>
+
+  <tr>
+    <td><font point-size=10>Single Line Delimited Input w/ID</font>
+      <a href="javascript:displayMsg('<b><u><center>Single Line Delimited
+        Input w/ ID</center></u></b><br>
+        Normal Scheduler operation assumes that each input element
+        (free text or MEDLINE citation) is separated from the next
+        element by a blank line.<br><br>
+        By selecting the <i>Single Line Delimited Input w/ ID</i> option, 
+        you are telling the Scheduler to treat each line of the input
+        file as a separate input item, identify the first field of each line
+        as an identification marker, and to ignore blank lines in
+        the file.<br><br>For Example,<br><br>00000001|Line one to process<br>
+        00000002|Line two to process');">
+        <img border=0 align=ABSMIDDLE src="./doc/quest.gif" 
+        width=14 height=14
+       alt="Question Mark Symbol: Help about Single Line Delimited Input w/ ID"
+       title="Question Mark Symbol: Help about Single Line Delimited Input w/ ID"></a>
+    </td>
+    <td><font point-size=10>SingLinePMID</font></td>
+    <td><font point-size=10>Boolean</font></td>
+  </tr>
+
+  <tr>
+    <td><font point-size=10>Requested Run Priority Level</font>
+      <a href="javascript:displayMsg('<b><u><center>Requested Run Priority</center></u></b><br>0 - Normal Priority<br>1 - Medium Priority<br>
+        2 - High Priority<br><br>
+        Users will normally run with Normal priority since only users with
+        specific authorization are allowed to specify either of the higher
+        priorities.  Medium priority provides the job with roughly 10 times
+        the processing time of any Normal priority jobs in the queue.  High
+        priority means that the job will take over the entire queue until
+        it has completed processing.');">
+        <img border=0 align=ABSMIDDLE src="./doc/quest.gif" 
+        width=14 height=14
+       alt="Question Mark Symbol: Help about Requested Run Priority Levels"
+       title="Question Mark Symbol: Help about Requested Run Priority Levels"></a>
+    </td>
+    <td><font point-size=10>RPriority</font></td>
+    <td><font point-size=10>String</font></td>
+  </tr>
+
+  <tr>
+    <td><font point-size=10>No Completion Email</font>
+      <a href="javascript:displayMsg('<b><u><center>No Completion Email</center></u></b><br>Normal behavior is for the Scheduler to email
+        the user whenever a job finishes.  This option tells the Scheduler
+        to not do this.');">
+        <img border=0 align=ABSMIDDLE src="./doc/quest.gif" 
+        width=14 height=14
+       alt="Question Mark Symbol: Help about the No Completion Email option"
+       title="Question Mark Symbol: Help about the No Completion Email option"></a>
+    </td>
+    <td><font point-size=10>SilentEmail</font></td>
+     <td><font point-size=10>Boolean</font></td>
+  </tr>
+</table>
+
+<ul type=square>
+  <li>You "should" catch "RuntimeException" exceptions in your program
+      since this is what the SKR Web API throws internally when it encounters
+      an error.  See example below for try/catch sample.
+  <br><br>
+
+  <li>You must specify an Email Address.  This is used for logging as well
+      as notification when Batch jobs finish, or if there are problems with
+      a job.
+  <br><br>
+
+  <li>You must specify the UpLoad_File field.
+  <br><br>
+
+  <li>Valid Batch job priorities are "0", "1", or "2".  Where "0" represents
+      Normal priority, "1" represents Medium, and "2" represents High
+      priority. Medium and High priorities are reserved and you must have the
+      proper permissions to use them.
+  <br><br>
+
+  <li>Explanation of setting up a basic SKR Web API program. The following
+      description details the steps to setting up a simple SKR Web API job to
+      send a small file to the Scheduler and receive a result back.
+      See the GenericBatch.java program file in the examples directory for the
+      full program.<br><br>
+      <ol type=1>
+       <li>The first thing you need to do is create a job object for the type
+           of program you want to run.<br><br>
+           <div style="background-color:white; border:2px solid #ADADAD">
+           <code>GenericObject myGenericObj = new GenericObject();</code>
+           </div><br>
+           This creates a Generic Batch job object with Validation.
+           <br><br>
+
+        <li>The next thing to do is setup any of the required or batch specific
+            fields.<br><br>
+            <div style="background-color:white; border:2px solid #ADADAD">
+            <code>
+             myGenericObj.setField("Email_Address", "yourEmailAddress");<br>
+             myGenericObj.setField("SilentEmail", true);<br>
+             myGenericObj.setField("Batch_Command", "MTI -opt1L_DCMS -E");<br>
+             myGenericObj.setField("UpLoad_File", "./sample.txt");
+            </code>
+            </div><br>
+            This tells the job object what your email address is (required),
+            tells the Scheduler that we don't want to be notified after the
+            job completes (SilentEmail), we want to run the MTI command with
+            "-opt1L_DCMS -E" as options, and that we want to use the local
+            file "sample.txt" as the input data to be processed (UpLoad_File).
+           <br><br>
+
+        <li>Now we are finally ready to actually submit the Batch job and
+            receive our results back.  We surround this submission code with
+            a try/catch for any "RuntimeException" exceptions that might be
+            thrown back to us from the SKR Web API program.
+            <br><br>
+            <div style="background-color:white; border:2px solid #ADADAD">
+            <code>
+            try<br>
+            {<br>
+            &nbsp;&nbsp;&nbsp;String results = myGenericObj.handleSubmission();<br>
+            &nbsp;&nbsp;&nbsp;System.out.print(results);<br>
+
+            } catch (RuntimeException ex) {<br>
+            &nbsp;&nbsp;&nbsp;System.err.println("");<br>
+            &nbsp;&nbsp;&nbsp;System.err.print("An ERROR has occurred while processing your");<br>
+            &nbsp;&nbsp;&nbsp;System.err.println(" request, please review any");<br>
+            &nbsp;&nbsp;&nbsp;System.err.print("lines beginning with \"Error:\" above and the");<br>
+            &nbsp;&nbsp;&nbsp;System.err.println(" trace below for indications of");<br>
+            &nbsp;&nbsp;&nbsp;System.err.println("what may have gone wrong.");<br>
+            &nbsp;&nbsp;&nbsp;System.err.println("");<br>
+            &nbsp;&nbsp;&nbsp;System.err.println("Trace:");<br>
+            &nbsp;&nbsp;&nbsp;ex.printStackTrace();<br>
+            } // catch<br>
+            </code>
+            </div>
+            <br>
+            This calls the job object routine that takes care of the job from
+            submission, monitoring, cleaning up, and returning a result.
+      </ol>
+</ul>
+</body>
+
+</html>
