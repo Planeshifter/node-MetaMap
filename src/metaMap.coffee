@@ -21,7 +21,16 @@ exports.getConcepts = getConcepts = (docs, options, callback) ->
 
     args = ['--username ' + escape(config.username), '--password ' + escape(config.password),
             '--email ' + escape(config.email)];
+
+
+    for key, value of options
+      if _.contains(['Q','t','d','D','a','u','K','l','r','i','Y','b','y'], key) and value == true
+        args.push("-" + key)
+      if _.contains(['R','e','J','k'], key) and typeIsArray(value) == true
+        args.push("-" + key + " " + value.join(','))
+
     command = 'sh SKR_Web_API_V2_1/run.sh MMCustom ' + args.join(' ')
+    console.log(command)
 
     analyze = (doc) =>
       pWrite = fs.writeFileAsync('temp.txt', doc)
