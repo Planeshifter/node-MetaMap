@@ -1,0 +1,30 @@
+{
+  "name": "MetaMap",
+  "version": "1.0.0",
+  "description": "Package providing access to the MetaMap Web API for UMLS",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Planeshifter/node-MetaMap.git"
+  },
+  "keywords": [
+    "dictionaries",
+    "UMLS",
+    "health-analytics",
+    "text-analysis"
+  ],
+  "author": "Philipp Burckhardt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Planeshifter/node-MetaMap/issues"
+  },
+  "homepage": "https://github.com/Planeshifter/node-MetaMap",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.12.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
