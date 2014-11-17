@@ -13,6 +13,9 @@ Array::removeAll = (v) -> x for x in @ when x!=v
 escape = (str) ->
   '"' + str + '"'
 
+escapeText = (str) ->
+  '\"' + str.replace(/\s/g,"\\ ") + '\"';
+
 package_folder = path.join( __dirname, '..')
 
 exports.config = config = JSON.parse( fs.readFileSync( path.normalize __dirname + '/../config.json' ) )
@@ -30,14 +33,15 @@ exports.getConcepts = getConcepts = (docs, options, callback) ->
         args.push("-" + key + " " + value.join(','))
 
     command = 'sh ' + path.normalize ( __dirname + '/../SKR_Web_API_V2_1/run.sh') + ' MMCustom ' + args.join(' ')
+    filePath = path.normalize ( __dirname + '/../SKR_Web_API_V2_1/examples/temp.txt')
 
     analyze = (doc) =>
-      pWrite = fs.writeFileAsync('temp.txt', doc)
-      proc = pWrite.then( () =>
-        return child_process.execAsync(command, {
+      args.push("--document " + escape(doc).replace(/\s/g,"_"))
+      command = 'sh ' + path.normalize ( __dirname + '/../SKR_Web_API_V2_1/run.sh') + ' MMCustom ' + args.join(' ')
+      console.log command
+      proc = child_process.execAsync(command, {
           cwd: package_folder
         })
-      )
       return proc
 
     if Array.isArray(docs) == false then docs = Array(docs);
@@ -58,5 +62,4 @@ exports.getConcepts = getConcepts = (docs, options, callback) ->
         return ret
       )
 
-    BPromise.all(resultSet).then () => fs.unlink("temp.txt")
     return resultSet.nodeify(callback)

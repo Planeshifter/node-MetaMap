@@ -23,19 +23,14 @@ public class MMCustom
 	String password = null;
   String text = null;
 
-  StringBuffer buffer = new StringBuffer("A spinal tap was performed and oligoclonal bands were detected in the cerebrospinal fluid.\n");
-  String bufferStr = buffer.toString();
-
-  try {
-    text = readFile("temp.txt", StandardCharsets.UTF_8);
-  } catch(IOException e){
-    text = bufferStr;
-  }
-
 	int i = 0;
 	    while (i < args.length) {
 	      if (args[i].charAt(0) == '-') {
-          if ( args[i].equals("-e") || args[i].equals("--email")) {
+          if ( args[i].equals("-d") || args[i].equals("--document") ) {
+            i++;
+            String concText = args[i];
+            text = concText.replace("_"," ");
+          } else if ( args[i].equals("-e") || args[i].equals("--email")) {
       		  i++;
       		  emailAddress = args[i];
       		} else if ( args[i].equals("-u") || args[i].equals("--username")) {
