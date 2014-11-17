@@ -16,7 +16,7 @@ The following pre-requisites have to be fulfilled before it is possible to use t
 The package itself can be conveniently installed via npm:
 
 ```
-npm install MetaMap
+npm install meta-map
 ```
 
 ## Basic Usage
@@ -24,7 +24,7 @@ npm install MetaMap
 Require the package as usual via
 
 ```
-var metaMap = require("MetaMap");   
+var metaMap = require("meta-map");   
 ```
 
 The package exposes one function with the following arguments:
