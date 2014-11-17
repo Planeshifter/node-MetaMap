@@ -1,11 +1,49 @@
+[![NPM version](https://badge.fury.io/js/MetaMap.svg)](http://badge.fury.io/js/MetaMap)
+[![build status](https://secure.travis-ci.org/Planeshifter/node-MetaMap.png)](http://travis-ci.org/Planeshifter/node-MetaMap)
+
 MetaMap
 =================
 
 This little package provides an easy access point to the [MetaMap Web API] (http://ii.nlm.nih.gov/Web_API/index.shtml), which allows analyzing textual documents and mapping them to concepts found in the Unified Medical Language System (UMLS) Metathesaurus.
 
-### Requirements & Installation
+## Requirements & Installation
 
+The following pre-requisites have to be fulfilled before it is possible to use the package: 
+- The package requires a running installation of JAVA version 1.6.0 
 - The `$JAVA_HOME` environment variable has to be specified correctly 
+- The `config.json` file has to include the username, email address and password of the UMLS account used to perform the MetaMap Web API queries 
+
+The package itslf can be conveniently installed via npm:
+
+```
+npm install MetaMap
+```
+
+## Basic Usage
+
+Require the package as usual via
+
+```
+var metaMap = require("metaMap");   
+```
+
+The package exposes one function with the following arguments:
+
+### metaMap(docs, [options], [callback])
+
+## Command-Line-Interface (CLI)
+
+In addition to the node.js package, a CLI is provided which can be used from the terminal after installing the package globally:
+
+```
+npm install MetaMap -g 
+```
+
+Help on how to use it can then be obtained from the terminal via the command 
+
+```
+MetaMap --help
+```
 
 ### MetaMap Web API
 Version 2.1, June 1, 2012
