@@ -10,15 +10,14 @@ typeIsArray = Array.isArray || ( value ) -> return {}.toString.call( value ) is 
 
 Array::removeAll = (v) -> x for x in @ when x!=v
 
-config = JSON.parse(fs.readFileSync __dirname + '/../config.json')
-
 escape = (str) ->
   '"' + str + '"'
 
-
 package_folder = path.join( __dirname, '..')
 
-module.exports = getConcepts = (docs, options, callback) ->
+exports.config = config = JSON.parse(fs.readFileSync __dirname + '/../config.json')
+
+exports.getConcepts = getConcepts = (docs, options, callback) ->
 
     args = ['--username ' + escape(config.username), '--password ' + escape(config.password),
             '--email ' + escape(config.email)];
@@ -46,7 +45,9 @@ module.exports = getConcepts = (docs, options, callback) ->
           })
       )
       .map( (data) =>
-        data.MMOs.MMO
+        ret = data.MMOs.MMO
+        delete ret.CmdLine
+        return ret
       )
 
     BPromise.all(resultSet).then () => fs.unlink("temp.txt")
