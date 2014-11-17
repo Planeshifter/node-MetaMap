@@ -1,4 +1,4 @@
-[![NPM version](https://badge.fury.io/js/MetaMap.svg)](http://badge.fury.io/js/MetaMap)
+[![NPM version](https://badge.fury.io/js/meta-map.svg)](http://badge.fury.io/js/meta-map)
 [![build status](https://secure.travis-ci.org/Planeshifter/node-MetaMap.png)](http://travis-ci.org/Planeshifter/node-MetaMap)
 
 MetaMap
