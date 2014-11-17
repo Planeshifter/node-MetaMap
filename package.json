@@ -2,7 +2,7 @@
   "name": "MetaMap",
   "version": "1.0.0",
   "description": "Package providing access to the MetaMap Web API for UMLS",
-  "main": "main.js",
+  "main": "lib/metaMap.js",
   "scripts": {
     "test": "mocha test"
   },
