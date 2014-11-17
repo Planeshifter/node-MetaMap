@@ -29,8 +29,7 @@ exports.getConcepts = getConcepts = (docs, options, callback) ->
       if _.contains(['R','e','J','k'], key) and typeIsArray(value) == true
         args.push("-" + key + " " + value.join(','))
 
-    command = 'sh SKR_Web_API_V2_1/run.sh MMCustom ' + args.join(' ')
-    console.log(command)
+    command = 'sh ' + __dirname + '/../SKR_Web_API_V2_1/run.sh MMCustom ' + args.join(' ')
 
     analyze = (doc) =>
       pWrite = fs.writeFileAsync('temp.txt', doc)
