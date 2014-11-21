@@ -31,7 +31,7 @@ The package exposes one function with the following arguments:
 
 ### getConcepts(docs, [options], [callback])
 
-`docs` should be either a single String or an Array of Strings, holding the documents to be analyzed. The second optional argument expects an object specifying the options used in the data processing. Finally, a callback function should be passed to the function which by node.js convention receives two arguments, `err` and `data` and is called once the API call has returned. As an alternative to callback, Promises are supported using the `Bluebird` package.
+`docs` should be either a single String or an Array of Strings, holding the documents to be analyzed. The second (optional) parameter of the function expects an object specifying the options used in data processing. Finally, a callback function should be passed to the function which by node.js convention receives two arguments, `err` and `data` and is called once the API call has returned. As an alternative to callbacks, Promises are supported using the `Bluebird` package.
 
 #### Example:
 Using callbacks: 
