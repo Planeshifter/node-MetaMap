@@ -50,7 +50,7 @@ metaMap.getConcepts(docs).then(console.log)
 
 #### Options 
 
-Most of the options which can be specified are equal one-to-one to the options which can be specified in the (http://ii.nlm.nih.gov/Interactive/UTS_Required/metamap.shtml)[interactive MetaMap tool], with the Output/Display options missing as all output is returned in JSON format in the node-MetaMap package.
+Most of the options which can be specified are equal one-to-one to the options which can be specified in the [interactive MetaMap tool](http://ii.nlm.nih.gov/Interactive/UTS_Required/metamap.shtml), with the Output/Display options missing as all output is returned in JSON format in the node-MetaMap package.
 
 The following Boolean options of the MetaMap API are supported:
 
