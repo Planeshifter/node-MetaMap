@@ -105,6 +105,18 @@ Help on how to use it can then be obtained from the terminal via the command
 MetaMap --help
 ```
 
+All options described above should be passed as the last arguments to the command-line application, e.g. 
+
+```
+MetaMap -l "Definition and classification of chronic kidney disease" Q true t true r '["AIR","AOD"]'
+```
+
+Without installing the package globally, the command-line application can be started from the project directory via `node main.js`. In this case, above command would take the form 
+
+```
+node main.js -l "Definition and classification of chronic kidney disease" Q true t true r '["AIR","AOD"]'
+```
+
 ### MetaMap Web API
 Version 2.1, June 1, 2012
 
