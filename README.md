@@ -31,7 +31,7 @@ The package exposes one function with the following arguments:
 
 ### getConcepts(docs, [options], [callback])
 
-`docs` should be either a single String or an Array of Strings, holding the documents to be analyzed. The second optional argument expects an object specifying the options used in the data processing. Finally, a callback function should be passed to the function which by node.js convention receives two arguments, `err` and `data` and is called once the API call has returned. As an alternative to callback, Promises are supported using the `Bluebird` package.
+`docs` should be either a single String or an Array of Strings, holding the documents to be analyzed. The second (optional) parameter of the function expects an object specifying the options used in data processing. Finally, a callback function should be passed to the function which by node.js convention receives two arguments, `err` and `data` and is called once the API call has returned. As an alternative to callbacks, Promises are supported using the `Bluebird` package.
 
 #### Example:
 Using callbacks: 
@@ -50,7 +50,7 @@ metaMap.getConcepts(docs).then(console.log)
 
 #### Options 
 
-Most of the options which can be specified are equal one-to-one to the options which can be specified in the (http://ii.nlm.nih.gov/Interactive/UTS_Required/metamap.shtml)[interactive MetaMap tool], with the Output/Display options missing as all output is returned in JSON format in the node-MetaMap package.
+Most of the options which can be specified are equal one-to-one to the options which can be specified in the [interactive MetaMap tool](http://ii.nlm.nih.gov/Interactive/UTS_Required/metamap.shtml), with the Output/Display options missing as all output is returned in JSON format in the node-MetaMap package.
 
 The following Boolean options of the MetaMap API are supported:
 
@@ -103,6 +103,18 @@ Help on how to use it can then be obtained from the terminal via the command
 
 ```
 MetaMap --help
+```
+
+All options described above should be passed as the last arguments to the command-line application, e.g. 
+
+```
+MetaMap -l "Definition and classification of chronic kidney disease" Q true t true r '["AIR","AOD"]'
+```
+
+Without installing the package globally, the command-line application can be started from the project directory via `node main.js`. In this case, above command would take the form 
+
+```
+node main.js -l "Definition and classification of chronic kidney disease" Q true t true r '["AIR","AOD"]'
 ```
 
 ### MetaMap Web API
