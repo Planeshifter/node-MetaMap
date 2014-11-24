@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha test/test.coffee --compilers coffee:coffee-script/register"
   },
-   "bin": {
-     "MetaMap": "main.js"
+  "bin": {
+    "MetaMap": "main.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/Planeshifter/node-MetaMap",
   "devDependencies": {
+    "chai": "^1.10.0",
+    "chai-as-promised": "^4.1.1",
     "coffee-script": "^1.8.0",
     "grunt": "^0.4.5",
     "grunt-contrib-coffee": "^0.12.0",
