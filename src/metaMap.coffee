@@ -38,7 +38,6 @@ exports.getConcepts = getConcepts = (docs, options, callback) ->
     analyze = (doc) =>
       args.push("--document " + escape(doc).replace(/\s/g,"_"))
       command = 'sh ' + path.normalize ( __dirname + '/../SKR_Web_API_V2_1/run.sh') + ' MMCustom ' + args.join(' ')
-      console.log command
       proc = child_process.execAsync(command, {
           cwd: package_folder
         })
