@@ -45,7 +45,6 @@ if (program.args.length > 0) {
 
 extractConcepts = function(corpus) {
   var res;
-  console.log(options);
   return res = BPromise.all(corpus.map((function(_this) {
     return function(doc) {
       return metaMap.getConcepts(doc, options);

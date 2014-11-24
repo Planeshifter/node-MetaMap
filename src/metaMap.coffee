@@ -50,6 +50,7 @@ exports.getConcepts = getConcepts = (docs, options, callback) ->
     resultSet = BPromise.all(analyses)
       .map( (data) =>
         xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + data[0].split('<?xml version="1.0" encoding="UTF-8"?>')[1]
+        console.log xmlString
         return parseStringAsync(xmlString, {
             mergeAttrs: true,
             explicitArray: false
