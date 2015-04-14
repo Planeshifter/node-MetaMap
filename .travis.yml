@@ -4,10 +4,13 @@ jdk:
 - oraclejdk7
 - openjdk6
 env:
-- secure: "cjy2eIw5o34+9X/Fw/tPl0XUNcBFI2ybndsIV2XQFyrX5vERM4Lz2rg59dCKkzu2RLgNzI4GVZPUZEaxPLtHkpbTwl+UAbzJ++w4gAdKZMW0MzN4PDcmV8YtklQ6rgObpQUxEEXDHMn6nytJ8gLcaKWm4eWuSRbfrI/EvcCbBHo="
+  - secure: "Rd3fNFACihCaqBmf/eS313RsEuc7FQmy2UumyT75gqqk1ivCq7ibEa2Hf6514LCJ2JBn+grQkrOfshps3KvcqMeHv7+g88zQ3EFNOCluWVe0uUPHM+OjmPEO0fQzteMDKHA5Z047IIYA7+uySofw9D1nqGVrhGMUjy2NV+TzcS0="
+  - NODE_VERSION="0.12"
+  - NODE_VERSION="0.11"
+  - NODE_VERSION="0.10"
 before_install:
   - printenv
-  - nvm install "0.10"
+  - nvm install $NODE_VERSION
 before_script:
   - npm install
 script:
