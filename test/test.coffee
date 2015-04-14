@@ -14,29 +14,29 @@ metaMap.config = {
 }
 
 describe "package namespace", () ->
-  it "loads successfully" , () =>
+  it "loads successfully" , () ->
      expect(metaMap.getConcepts).to.be.a("function")
      expect(metaMap.config).to.be.a("object")
-  it "has config object with username, password and email to connect to API", () =>
+  it "has config object with username, password and email to connect to API", () ->
     expect(metaMap.config).to.have.property("username")
     expect(metaMap.config).to.have.property("password")
     expect(metaMap.config).to.have.property("email")
 
 describe "getConcepts([corpus]): analzye text array", () ->
   @timeout(30000)
-  it "works in vanilla mode", () =>
+  it "works in vanilla mode", ( done ) ->
     fAnalysis = metaMap.getConcepts("Definition and classification of chronic kidney disease")
-    fElem = fAnalysis.then((arr) => arr[0])
+    fElem = fAnalysis.then((arr) -> arr[0])
     tests = []
     tests.push expect(fAnalysis).to.eventually.be.not.empty
     tests.push expect(fElem).to.eventually.have.property "Utterances"
     tests.push expect(fElem).to.eventually.have.deep.property "Utterances.Utterance.Phrases"
-    return BPromise.all(tests)
-  it "accepts options", () =>
+    return BPromise.all(tests).then( () -> done() )
+  it "accepts options", ( done ) ->
     fRes = metaMap.getConcepts("Definition and classification of chronic kidney disease",{r: ["AIR","AOD"]})
-    fElem = fRes.then((arr) => arr[0])
+    fElem = fRes.then((arr) -> arr[0])
     tests = []
     tests.push expect(fRes).to.eventually.be.not.empty
     tests.push expect(fElem).to.eventually.have.property "Utterances"
     tests.push expect(fElem).to.eventually.have.deep.property "Utterances.Utterance.Phrases"
-    return BPromise.all(tests)
+    BPromise.all(tests).then( () -> done() )
