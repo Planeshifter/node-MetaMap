@@ -13,8 +13,6 @@ metaMap.config = {
   "email": process.env.EMAIL
 }
 
-console.log process.env
-
 describe "package namespace", () ->
   it "loads successfully" , () =>
      expect(metaMap.getConcepts).to.be.a("function")
@@ -25,7 +23,7 @@ describe "package namespace", () ->
     expect(metaMap.config).to.have.property("email")
 
 describe "getConcepts([corpus]): analzye text array", () ->
-  @timeout(10000)
+  @timeout(30000)
   it "works in vanilla mode", () =>
     fAnalysis = metaMap.getConcepts("Definition and classification of chronic kidney disease")
     fElem = fAnalysis.then((arr) => arr[0])
