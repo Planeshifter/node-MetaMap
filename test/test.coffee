@@ -7,6 +7,14 @@ util = require "util"
 expect = chai.expect
 metaMap = require '../lib/metaMap.js'
 
+metaMap.config = {
+  "username": process.env.USERNAME,
+  "password": process.env.PASSWORD,
+  "email": process.env.EMAIL
+}
+
+console.log metaMap.config
+
 describe "package namespace", () ->
   it "loads successfully" , () =>
      expect(metaMap.getConcepts).to.be.a("function")
