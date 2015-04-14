@@ -3,12 +3,9 @@ jdk:
 - oraclejdk8
 - oraclejdk7
 - openjdk6
-env:
-  - NODE_VERSION="0.11"
-  - NODE_VERSION="0.10" 
 before_install:
   - printenv
-  - nvm install $NODE_VERSION
+  - nvm install "0.10"
   - echo "$USERNAME"
 before_script:
   - npm install
