@@ -26,7 +26,7 @@ describe "getConcepts([corpus]): analzye text array", () ->
   @timeout(99999)
   it "works in vanilla mode", () ->
     fAnalysis = metaMap.getConcepts("Definition and classification of chronic kidney disease")
-    fElem = fAnalysis.then((arr) -> arr[0])
+    fElem = fAnalysis.then((arr) -> arr[0]).catch( (e) -> console.log e )
     tests = []
     tests.push expect(fAnalysis).to.eventually.be.not.empty
     tests.push expect(fElem).to.eventually.have.property "Utterances"
@@ -34,7 +34,7 @@ describe "getConcepts([corpus]): analzye text array", () ->
     return BPromise.all(tests)
   it "accepts options", () ->
     fRes = metaMap.getConcepts("Definition and classification of chronic kidney disease",{r: ["AIR","AOD"]})
-    fElem = fRes.then((arr) -> arr[0])
+    fElem = fRes.then((arr) -> arr[0]).catch( (e) -> console.log e )
     tests = []
     tests.push expect(fRes).to.eventually.be.not.empty
     tests.push expect(fElem).to.eventually.have.property "Utterances"
