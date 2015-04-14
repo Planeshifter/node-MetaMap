@@ -13,7 +13,7 @@ metaMap.config = {
   "email": process.env.EMAIL
 }
 
-console.log metaMap.config
+console.log process.env
 
 describe "package namespace", () ->
   it "loads successfully" , () =>

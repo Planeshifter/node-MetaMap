@@ -1,5 +1,7 @@
-[![NPM version](https://badge.fury.io/js/meta-map.svg)](http://badge.fury.io/js/meta-map)
-[![build status](https://secure.travis-ci.org/Planeshifter/node-MetaMap.png)](http://travis-ci.org/Planeshifter/node-MetaMap)
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![Dependencies][dependencies-image]][dependencies-url]
 
 MetaMap
 =================
@@ -8,9 +10,9 @@ This little package provides an easy access point to the [MetaMap Web API] (http
 
 ## Requirements & Installation
 
-The following pre-requisites have to be fulfilled before it is possible to use the package: 
-- The package requires a running installation of JAVA version 1.6.0 
-- The `$JAVA_HOME` environment variable has to be specified correctly 
+The following pre-requisites have to be fulfilled before it is possible to use the package:
+- The package requires a running installation of JAVA version 1.6.0
+- The `$JAVA_HOME` environment variable has to be specified correctly
 - The `config.json` file should include the username, email address and password of the UMLS account used to perform the MetaMap Web API queries. If not specified, it is possible to assign the correct values at run-time.
 
 The package itself can be conveniently installed via npm:
@@ -24,7 +26,7 @@ npm install meta-map
 Require the package as usual via
 
 ```
-var metaMap = require("meta-map");   
+var metaMap = require("meta-map");
 ```
 
 The package exposes one function with the following arguments:
@@ -34,7 +36,7 @@ The package exposes one function with the following arguments:
 `docs` should be either a single String or an Array of Strings, holding the documents to be analyzed. The second (optional) parameter of the function expects an object specifying the options used in data processing. Finally, a callback function should be passed to the function which by node.js convention receives two arguments, `err` and `data` and is called once the API call has returned. As an alternative to callbacks, Promises are supported using the `Bluebird` package.
 
 #### Example:
-Using callbacks: 
+Using callbacks:
 
 ```
 metaMap.getConcepts(docs, null, function(err, data){
@@ -48,7 +50,7 @@ And using promises:
 metaMap.getConcepts(docs).then(console.log)
 ```
 
-#### Options 
+#### Options
 
 Most of the options which can be specified are equal one-to-one to the options which can be specified in the [interactive MetaMap tool](http://ii.nlm.nih.gov/Interactive/UTS_Required/metamap.shtml), with the Output/Display options missing as all output is returned in JSON format in the node-MetaMap package.
 
@@ -60,7 +62,7 @@ The following Boolean options of the MetaMap API are supported:
 - All Derivational Variants (D)
 - Allow Acronym/Abbreviation Variants (a)
 - Unique Acronym/Abbreviation Variants Only (u)
-- Ignore Stop Phrases (K) 
+- Ignore Stop Phrases (K)
 - Allow Large N (l)
 - Threshold (r):
 - Ignore Word Order (i)
@@ -82,7 +84,7 @@ Source vocabularies can be excluded using the `R` and `e` keys, which specify a 
 options = {r: ["AIR","AOD"]}
 ```
 
-Similarly, restriction or exclusion of Semantic Type(s) is possible via the options `J` and  `k`, which again should both be arrays of the chosen types. 
+Similarly, restriction or exclusion of Semantic Type(s) is possible via the options `J` and  `k`, which again should both be arrays of the chosen types.
 
 ### config
 This exposed object holds the user data necessary to connect to the MetaMap Web API. By default, it will load the contents of the `config.json` file in the project directory. Values can also be assigned at run-time by simple assignment:
@@ -96,22 +98,22 @@ metaMap.config = { username: "my username", password: "my password", email: "my 
 In addition to the node.js package, a CLI is provided which can be used from the terminal after installing the package globally:
 
 ```
-npm install MetaMap -g 
+npm install MetaMap -g
 ```
 
-Help on how to use it can then be obtained from the terminal via the command 
+Help on how to use it can then be obtained from the terminal via the command
 
 ```
 MetaMap --help
 ```
 
-All options described above should be passed as the last arguments to the command-line application, e.g. 
+All options described above should be passed as the last arguments to the command-line application, e.g.
 
 ```
 MetaMap -l "Definition and classification of chronic kidney disease" Q true t true r '["AIR","AOD"]'
 ```
 
-Without installing the package globally, the command-line application can be started from the project directory via `node main.js`. In this case, above command would take the form 
+Without installing the package globally, the command-line application can be started from the project directory via `node main.js`. In this case, above command would take the form
 
 ```
 node main.js -l "Definition and classification of chronic kidney disease" Q true t true r '["AIR","AOD"]'
@@ -130,9 +132,9 @@ MetaMap and MetaMap Tools are available to all requesters, both within and outsi
 
 3. Use of MetaMap and MetaMap Tools
     Redistributions of MetaMap and MetaMap Tools in source or binary form must include this list of conditions in the documentation and other materials provided with the distribution.
-    In any publication or distribution of all or any portion of MetaMap and MetaMap Tools 
-(1) you must attribute the source of the tools as MetaMap and MetaMap Tools with the release number and date; 
-(2) you must clearly annotate within the source code, any modification made to MetaMap and MetaMap Tools; and 
+    In any publication or distribution of all or any portion of MetaMap and MetaMap Tools
+(1) you must attribute the source of the tools as MetaMap and MetaMap Tools with the release number and date;
+(2) you must clearly annotate within the source code, any modification made to MetaMap and MetaMap Tools; and
 (3) any subsequent distribution of program, tool, or material based on MetaMap and MetaMap Tools, must be accomplished within the context of an open source set of terms and conditions such as the GNU General License.
     Bugs, questions, issues relating to MetaMap and MetaMap Tools should be directed to the most recent of the chain of entities that may have modified and re-distributed this code.
     You shall not assert any proprietary rights to any portion of MetaMap and MetaMap Tools, nor represent MetaMap and MetaMap Tools or any part thereof to anyone as other than a United States Government product.
@@ -140,3 +142,16 @@ MetaMap and MetaMap Tools are available to all requesters, both within and outsi
     Neither the United States Government, U.S. Department of Health and Human Services, National Institutes of Health, National Library of Medicine, Lister Hill National Center for Biomedical Communications, nor any of its agencies, contractors, subcontractors or employees of the United States Government make any warranties, expressed or implied, with respect to MetaMap and MetaMap Tools, and, furthermore, assume no liability for any party's use, or the results of such use, of any part of these tools.
 
 These terms and conditions are in effect as long as the user retains any part of MetaMap and MetaMap Tools.
+
+
+[npm-image]: https://badge.fury.io/js/meta-map.svg
+[npm-url]: http://badge.fury.io/js/meta-map
+
+[travis-image]: https://travis-ci.org/Planeshifter/node-MetaMap.svg
+[travis-url]: https://travis-ci.org/Planeshifter/node-MetaMap
+
+[coveralls-image]: https://img.shields.io/coveralls/Planeshifter/node-MetaMap/master.svg
+[coveralls-url]: https://coveralls.io/r/Planeshifter/node-MetaMap?branch=master
+
+[dependencies-image]: http://img.shields.io/david/Planeshifter/node-MetaMap.svg
+[dependencies-url]: https://david-dm.org/Planeshifter/node-MetaMap
