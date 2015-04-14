@@ -31,7 +31,7 @@ describe "getConcepts([corpus]): analzye text array", () ->
     tests.push expect(fAnalysis).to.eventually.be.not.empty
     tests.push expect(fElem).to.eventually.have.property "Utterances"
     tests.push expect(fElem).to.eventually.have.deep.property "Utterances.Utterance.Phrases"
-    return BPromise.all(tests).then( () -> done() )
+    BPromise.all(tests).then( () -> done() )
   it "accepts options", ( done ) ->
     fRes = metaMap.getConcepts("Definition and classification of chronic kidney disease",{r: ["AIR","AOD"]})
     fElem = fRes.then((arr) -> arr[0])
