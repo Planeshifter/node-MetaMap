@@ -3,10 +3,11 @@ jdk:
 - oraclejdk8
 - oraclejdk7
 - openjdk6
+env:
+- secure: "cjy2eIw5o34+9X/Fw/tPl0XUNcBFI2ybndsIV2XQFyrX5vERM4Lz2rg59dCKkzu2RLgNzI4GVZPUZEaxPLtHkpbTwl+UAbzJ++w4gAdKZMW0MzN4PDcmV8YtklQ6rgObpQUxEEXDHMn6nytJ8gLcaKWm4eWuSRbfrI/EvcCbBHo="
 before_install:
   - printenv
   - nvm install "0.10"
-  - echo "$USERNAME"
 before_script:
   - npm install
 script:
