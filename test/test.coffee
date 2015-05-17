@@ -8,12 +8,10 @@ expect = chai.expect
 metaMap = require '../lib/metaMap.js'
 
 metaMap.config = {
-  "username": process.env.USERNAME,
-  "password": process.env.PASSWORD,
-  "email": process.env.EMAIL
+    "username":"Planeshifter",
+    "email":"pgb@andrew.cmu.edu",
+    "password":"R5sT+(o)"
 }
-
-console.log process.env
 
 describe "package namespace", () ->
   it "loads successfully" , () =>
@@ -25,7 +23,7 @@ describe "package namespace", () ->
     expect(metaMap.config).to.have.property("email")
 
 describe "getConcepts([corpus]): analzye text array", () ->
-  @timeout(10000)
+  @timeout(80000)
   it "works in vanilla mode", () =>
     fAnalysis = metaMap.getConcepts("Definition and classification of chronic kidney disease")
     fElem = fAnalysis.then((arr) => arr[0])

@@ -154,4 +154,4 @@ These terms and conditions are in effect as long as the user retains any part of
 [coveralls-url]: https://coveralls.io/r/Planeshifter/node-MetaMap?branch=master
 
 [dependencies-image]: http://img.shields.io/david/Planeshifter/node-MetaMap.svg
-[dependencies-url]: https://david-dm.org/Planeshifter/node-MetaMap
+[dependencies-url]: https://david-dm.org/Planeshifter/node-MetaMap      

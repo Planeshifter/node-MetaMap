@@ -7,7 +7,7 @@
     "test": "mocha test/test.coffee --compilers coffee:coffee-script/register"
   },
   "bin": {
-    "MetaMap": "main.js"
+    "MetaMap": "./bin/MetaMap"
   },
   "repository": {
     "type": "git",
