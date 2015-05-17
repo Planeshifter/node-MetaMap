@@ -1,6 +1,6 @@
 {
   "name": "meta-map",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "Package providing access to the MetaMap Web API for UMLS",
   "main": "lib/metaMap.js",
   "scripts": {
