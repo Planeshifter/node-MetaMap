@@ -1,4 +1,5 @@
 prompt = require('prompt')
+fs = require('fs')
 
 schema = {
   properties: {
