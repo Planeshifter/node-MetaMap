@@ -4,7 +4,9 @@
   "description": "Package providing access to the MetaMap Web API for UMLS",
   "main": "lib/metaMap.js",
   "scripts": {
-    "test": "mocha test/test.coffee --compilers coffee:coffee-script/register"
+    "test": "mocha test/test.coffee --compilers coffee:coffee-script/register",
+    "prepublish": "grunt",
+    "postinstall": "node lib/postinstall.js"
   },
   "bin": {
     "MetaMap": "./bin/MetaMap"
@@ -39,6 +41,7 @@
     "commander": "^2.5.0",
     "mime": "^1.2.11",
     "mocha": "^2.0.1",
+    "prompt": "^0.2.14",
     "underscore": "^1.7.0",
     "xml2js": "^0.4.4"
   }
