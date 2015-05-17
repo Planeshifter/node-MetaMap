@@ -3,10 +3,15 @@ jdk:
 - oraclejdk8
 - oraclejdk7
 - openjdk6
+env:
+  global:
+    - secure: "M4vishF1iX1RfdDC+78AHpbfkuL/cap4O9Y7RI2alJIm9pdUnt++x+kDfKzDKsPcve9eSpEVRp9wuxTAe2ipfUqlO+mmStPEnQA9yAk2g2Bq06afku/gpKMpy0b87taBTVVOt26QMyfXm51B639hUY8BryQLhCN3eQ4kMjEJ6Xs="
+  matrix:
+    - NODE_VERSION="0.12"
+    - NODE_VERSION="0.11"
+    - NODE_VERSION="0.10"
 before_install:
-  - printenv
-  - nvm install "0.10"
-  - echo "$USERNAME"
+  - nvm install $NODE_VERSION
 before_script:
   - npm install
 script:

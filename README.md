@@ -98,7 +98,7 @@ metaMap.config = { username: "my username", password: "my password", email: "my 
 In addition to the node.js package, a CLI is provided which can be used from the terminal after installing the package globally:
 
 ```
-npm install MetaMap -g
+npm install meta-map -g
 ```
 
 Help on how to use it can then be obtained from the terminal via the command
