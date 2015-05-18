@@ -24,45 +24,51 @@ exports.config = config =
 
 exports.getConcepts = getConcepts = (docs, options, callback) ->
 
-    args = ['--username ' + escape(config.username), '--password ' + escape(config.password),
-            '--email ' + escape(config.email)];
+  args = ['--username ' + escape(config.username), '--password ' +
+  escape(config.password),
+    '--email ' + escape(config.email)]
+  for key, value of options
+    if _.contains(['Q','t','d','D','a','u','K','l','r','i','Y','b','y'],
+    key)  and value == true
+      args.push("-" + key)
+    if _.contains(['R','e','J','k'], key) and typeIsArray(value) == true
+      args.push("-" + key + " " + value.join(','))
 
+  command = 'sh ' +
+  path.normalize ( __dirname +
+  '/../SKR_Web_API_V2_1/run.sh') +
+  ' MMCustom ' + args.join(' ')
+  filePath = path.normalize ( __dirname +
+  '/../SKR_Web_API_V2_1/examples/temp.txt')
 
-    for key, value of options
-      if _.contains(['Q','t','d','D','a','u','K','l','r','i','Y','b','y'], key) and value == true
-        args.push("-" + key)
-      if _.contains(['R','e','J','k'], key) and typeIsArray(value) == true
-        args.push("-" + key + " " + value.join(','))
+  analyze = (doc) ->
+    args.push("--document " + escape(doc).replace(/\s/g,"_"))
+    command = 'sh ' +
+    path.normalize ( __dirname + '/../SKR_Web_API_V2_1/run.sh') +
+    ' MMCustom ' + args.join(' ')
+    proc = child_process.execAsync(command, {
+      cwd: package_folder,
+      maxBuffer: 1024 * 1024
+    })
+    return proc
 
-    command = 'sh ' + path.normalize ( __dirname + '/../SKR_Web_API_V2_1/run.sh') + ' MMCustom ' + args.join(' ')
-    filePath = path.normalize ( __dirname + '/../SKR_Web_API_V2_1/examples/temp.txt')
+  if Array.isArray(docs) == false then docs = Array(docs)
 
-    analyze = (doc) =>
-      args.push("--document " + escape(doc).replace(/\s/g,"_"))
-      command = 'sh ' + path.normalize ( __dirname + '/../SKR_Web_API_V2_1/run.sh') + ' MMCustom ' + args.join(' ')
-      proc = child_process.execAsync(command, {
-          cwd: package_folder,
-          maxBuffer: 1024 * 1024
-        })
-      return proc
+  analyses = (analyze doc for doc in docs)
 
-    if Array.isArray(docs) == false then docs = Array(docs)
+  resultSet = BPromise.all(analyses)
+  .map( (data) ->
+    xmlString = '<?xml version="1.0" encoding="UTF-8"?>' +
+    data[0].split('<?xml version="1.0" encoding="UTF-8"?>')[1]
+    return parseStringAsync(xmlString, {
+      mergeAttrs: true,
+      explicitArray: false
+    })
+  )
+  .map( (data) ->
+    ret = data.MMOs.MMO
+    delete ret.CmdLine
+    return ret
+  )
 
-    analyses = (analyze doc for doc in docs)
-
-    resultSet = BPromise.all(analyses)
-      .map( (data) ->
-        xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + data[0].split('<?xml version="1.0" encoding="UTF-8"?>')[1]
-        console.log xmlString
-        return parseStringAsync(xmlString, {
-          mergeAttrs: true,
-          explicitArray: false
-        })
-      )
-      .map( (data) ->
-        ret = data.MMOs.MMO
-        delete ret.CmdLine
-        return ret
-      )
-
-    return resultSet.nodeify(callback)
+  return resultSet.nodeify(callback)
