@@ -77,14 +77,18 @@ exports.getConceptArray = ( resultSet ) ->
   utterances =  resultSet[0]?.Utterances?.Utterance
   if Array.isArray( utterances ) is true
     ret = _.flatten utterances.map( (u) ->
-      u.Phrases?.Phrase
+      phrases = u.Phrases?.Phrase
+      if not Array.isArray(phrases) then phrases = [phrases]
+      phrases
       .map( (p) -> p.Mappings?.Mapping)
       .filter( (p) -> p != undefined )
       .map( (c) -> if Array.isArray(c) then c[0] else c )
       .map( (c) -> c.MappingCandidates?.Candidate )
     )
   else
-    ret = _.flatten( utterances.Phrases?.Phrase
+    phrases = utterances.Phrases?.Phrase
+    if not Array.isArray(phrases) then phrases = [phrases]
+    ret = _.flatten( phrases
     .map( (p) -> p.Mappings?.Mapping)
     .filter( (p) -> p != undefined )
     .map( (c) -> if Array.isArray(c) then c[0] else c )
