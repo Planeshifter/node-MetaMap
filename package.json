@@ -2,7 +2,7 @@
   "name": "meta-map",
   "version": "0.8.17",
   "description": "Package providing access to the MetaMap Web API for UMLS",
-  "main": "lib/index.js",
+  "main": "lib/metaMap.js",
   "scripts": {
     "test": "mocha test/test.coffee --compilers coffee:coffee-script/register",
     "prepublish": "grunt",
